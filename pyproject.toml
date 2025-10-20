@@ -1,0 +1,15 @@
+[project]
+name = "hr-companion"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bs4>=0.0.2",
+    "langchain>=1.0.1",
+    "langchain-community>=0.4",
+    "langchain-ollama>=1.0.0",
+    "langchain-qdrant>=1.0.0",
+    "langchain-text-splitters>=1.0.0",
+    "langgraph>=1.0.0",
+]

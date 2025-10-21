@@ -12,4 +12,6 @@ dependencies = [
     "langchain-qdrant>=1.0.0",
     "langchain-text-splitters>=1.0.0",
     "langgraph>=1.0.0",
+    "pydantic>=2.12.3",
+    "pypdf2>=3.0.1",
 ]

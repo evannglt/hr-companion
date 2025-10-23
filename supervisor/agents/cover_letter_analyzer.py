@@ -64,8 +64,8 @@ Provide a structured analysis including:
 
 Be concise but insightful."""
 
-            analysis = llm.invoke(prompt)
-            cover_letter_analyses[candidate_id] = analysis
+            analysis_response = llm.invoke(prompt)
+            cover_letter_analyses[candidate_id] = analysis_response.content
             logger.info(f"Completed cover letter analysis for {candidate_id}")
             
         except FileNotFoundError:

@@ -71,8 +71,8 @@ Provide a comprehensive matching assessment including:
 
 Be objective and thorough in your assessment."""
 
-            match_result = llm.invoke(prompt)
-            job_matches[candidate_id] = match_result
+            match_result_response = llm.invoke(prompt)
+            job_matches[candidate_id] = match_result_response.content
             logger.info(f"Completed job matching for {candidate_id}")
             
         except Exception as e:

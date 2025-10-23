@@ -71,7 +71,8 @@ Provide:
 
 Be thorough, objective, and provide actionable insights for the hiring decision."""
 
-        detailed_report = llm.invoke(prompt)
+        detailed_report_response = llm.invoke(prompt)
+        detailed_report = detailed_report_response.content
         
         # Create structured JSON output
         json_prompt = f"""Based on the following detailed ranking report, extract a structured JSON ranking.
@@ -102,7 +103,9 @@ Ensure the JSON is valid and complete."""
         # Try to parse the JSON (with error handling)
         try:
             # Extract JSON from response if it's wrapped in markdown or text
-            json_str = str(json_response)
+            json_str = json_response.content if hasattr(json_response, 'content') else str(json_response)
+            logger.debug(f"Raw JSON response: {json_str[:200]}...")  # Log first 200 chars
+            
             if "```json" in json_str:
                 json_str = json_str.split("```json")[1].split("```")[0].strip()
             elif "```" in json_str:
@@ -111,6 +114,7 @@ Ensure the JSON is valid and complete."""
             structured_output = json.loads(json_str)
         except json.JSONDecodeError as e:
             logger.warning(f"Failed to parse JSON from LLM response: {e}")
+            logger.debug(f"Problematic JSON string: {json_str[:500]}...")
             # Create a fallback structure
             structured_output = {
                 "rankings": [

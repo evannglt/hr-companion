@@ -57,8 +57,8 @@ Provide a structured analysis including:
 
 Be concise but thorough."""
 
-            analysis = llm.invoke(prompt)
-            resume_analyses[candidate_id] = analysis
+            analysis_response = llm.invoke(prompt)
+            resume_analyses[candidate_id] = analysis_response.content
             logger.info(f"Completed resume analysis for {candidate_id}")
             
         except Exception as e:
